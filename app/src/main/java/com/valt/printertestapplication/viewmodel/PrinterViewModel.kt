@@ -5,6 +5,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.valt.printertestapplication.R
 import com.valt.printertestapplication.data.ConnectionStatus
 import com.valt.printertestapplication.data.PrinterDevice
 import com.valt.printertestapplication.data.PrinterState
@@ -14,10 +15,8 @@ import com.valt.printertestapplication.printer.BluetoothPrinterManager
 import com.valt.printertestapplication.printer.InnerPrinterManager
 import com.valt.printertestapplication.printer.LabelPrinterCommands
 import com.valt.printertestapplication.printer.LabelPrinterManager
-import com.valt.printertestapplication.R
 import com.valt.printertestapplication.printer.UsbPrinterManager
 import com.valt.printertestapplication.printer.WifiPrinterManager
-import com.valt.printertestapplication.ui.components.ComposeViewCapture
 import com.valt.printertestapplication.ui.components.OrderBitmapGenerator
 import com.valt.printertestapplication.ui.components.OrderData
 import kotlinx.coroutines.flow.MutableStateFlow
