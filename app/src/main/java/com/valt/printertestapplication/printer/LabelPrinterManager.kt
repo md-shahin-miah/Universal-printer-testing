@@ -57,16 +57,13 @@ class LabelPrinterManager(private val context: Context) : BasePrinterManager {
     private var usbEndpointIn: UsbEndpoint? = null    // IN endpoint for reading
     private var currentUsbDevice: UsbDevice? = null
 
-    // Network connection
     private var socket: Socket? = null
     private var networkOutputStream: OutputStream? = null
     private var networkInputStream: InputStream? = null
     
-    // Read listener
     private val _receivedData = MutableStateFlow<ByteArray?>(null)
     val receivedData: StateFlow<ByteArray?> = _receivedData.asStateFlow()
     
-    // Message for Toast display
     private val _toastMessage = MutableStateFlow<String?>(null)
     val toastMessage: StateFlow<String?> = _toastMessage.asStateFlow()
     
@@ -131,7 +128,6 @@ class LabelPrinterManager(private val context: Context) : BasePrinterManager {
             try {
                 val devices = mutableListOf<PrinterDevice>()
 
-                // Scan ALL USB devices - label printers often don't use printer class
                 val deviceList = usbManager.deviceList
                 Log.d(TAG, "Found ${deviceList.size} USB devices")
                 
