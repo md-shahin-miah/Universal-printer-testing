@@ -217,7 +217,9 @@ class LabelPrinterManager(private val context: Context) : BasePrinterManager {
                         false
                     }
                 }
+
             } catch (e: Exception) {
+
                 Log.e(TAG, "Connection failed", e)
                 _errorMessage.value = "Connection failed: ${e.message}"
                 _connectionStatus.value = ConnectionStatus.ERROR
