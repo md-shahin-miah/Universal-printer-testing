@@ -1,6 +1,7 @@
 package com.valt.printertestapplication.viewmodel
 
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -174,19 +175,13 @@ class PrinterViewModel(private val context: Context) : ViewModel() {
             
             // Check if printer supports reading (has IN endpoint)
             val canRead = labelPrinterManager.canReadFromPrinter()
-            android.util.Log.d("PrinterViewModel", "Can read from printer: $canRead")
-            
+
             if (canRead) {
                 // Check printer status first
                 val status = labelPrinterManager.queryPrinterStatus()
                 
                 if (status != null) {
-                    android.util.Log.d("PrinterViewModel", "Printer Status: ${status.getStatusText()}")
-                    android.util.Log.d("PrinterViewModel", "Paper Out: ${status.isPaperOut}")
-                    android.util.Log.d("PrinterViewModel", "Cover Open: ${status.isCoverOpen}")
-                    android.util.Log.d("PrinterViewModel", "Has Error: ${status.hasError}")
-                    android.util.Log.d("PrinterViewModel", "Raw Status: ${status.rawStatus}")
-                    
+
                     if (status.isPaperOut) {
                         _printResult.value = PrintResult.Error("Paper is out! Please load paper.")
                         return@launch
@@ -203,7 +198,7 @@ class PrinterViewModel(private val context: Context) : ViewModel() {
                     }
                 }
             } else {
-                android.util.Log.w("PrinterViewModel", "Printer is WRITE-ONLY (no IN endpoint) - skipping status check")
+                Log.w("PrinterViewModel", "Printer is WRITE-ONLY (no IN endpoint) - skipping status check")
             }
             
             // Print
